@@ -53,6 +53,7 @@ import { StashesView } from './views/stashesView';
 import { TagsView } from './views/tagsView';
 import { ViewCommands } from './views/viewCommands';
 import { ViewFileDecorationProvider } from './views/viewDecorationProvider';
+import { WorkspacesView } from './views/workspacesView';
 import { WorktreesView } from './views/worktreesView';
 import { VslsController } from './vsls/vsls';
 import { registerCommitDetailsWebviewView } from './webviews/commitDetails/registration';
@@ -240,6 +241,7 @@ export class Container {
 		context.subscriptions.splice(0, 0, (this._remotesView = new RemotesView(this)));
 		context.subscriptions.splice(0, 0, (this._stashesView = new StashesView(this)));
 		context.subscriptions.splice(0, 0, (this._tagsView = new TagsView(this)));
+		context.subscriptions.splice(0, 0, (this._workspacesView = new WorkspacesView(this)));
 		context.subscriptions.splice(0, 0, (this._worktreesView = new WorktreesView(this)));
 		context.subscriptions.splice(0, 0, (this._contributorsView = new ContributorsView(this)));
 		context.subscriptions.splice(0, 0, (this._searchAndCompareView = new SearchAndCompareView(this)));
@@ -644,6 +646,15 @@ export class Container {
 	private _vsls: VslsController;
 	get vsls() {
 		return this._vsls;
+	}
+
+	private _workspacesView: WorkspacesView | undefined;
+	get workspacesView() {
+		if (this._workspacesView == null) {
+			this._context.subscriptions.splice(0, 0, (this._workspacesView = new WorkspacesView(this)));
+		}
+
+		return this._workspacesView;
 	}
 
 	private _worktreesView: WorktreesView | undefined;

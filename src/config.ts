@@ -650,6 +650,7 @@ interface ViewsConfigs {
 	searchAndCompare: SearchAndCompareViewConfig;
 	stashes: StashesViewConfig;
 	tags: TagsViewConfig;
+	workspaces: WorkspacesViewConfig;
 	worktrees: WorktreesViewConfig;
 }
 
@@ -806,6 +807,17 @@ export interface WorktreesViewConfig {
 	};
 	reveal: boolean;
 	showBranchComparison: false | ViewShowBranchComparison.Branch;
+}
+
+// TODO@ramint
+export interface WorkspacesViewConfig {
+	avatars: boolean;
+	files: ViewsFilesConfig;
+	pullRequests: {
+		enabled: boolean;
+		showForBranches: boolean;
+		showForCommits: boolean;
+	};
 }
 
 export interface ViewsFilesConfig {
